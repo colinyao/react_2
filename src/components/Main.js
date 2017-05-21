@@ -1,5 +1,5 @@
 require('normalize.css/normalize.css');
-require('../../static/styles/App.css');
+require('../../static/css/App.less');
 
 import React from 'react';
 
@@ -10,7 +10,7 @@ class AppComponent extends React.Component {
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!123123</div>
       </div>
     );
   }
