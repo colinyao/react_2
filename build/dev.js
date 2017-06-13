@@ -4,12 +4,12 @@ let path = require('path');
 let webpack = require('webpack');
 let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
-let merge=require('webpack-merge')
+let merge = require('webpack-merge')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-// Add needed plugins here
-// add hot-reload related code to entry chunks
-Object.keys(baseConfig.entry).forEach(function (name) {
+  // Add needed plugins here
+  // add hot-reload related code to entry chunks
+Object.keys(baseConfig.entry).forEach(function(name) {
   baseConfig.entry[name] = ['./build/dev-client'].concat(baseConfig.entry[name])
 })
 
@@ -37,7 +37,7 @@ config.module.rules.push({
   test: /\.(js|jsx)$/,
   loader: 'react-hot-loader!babel-loader',
   include: [].concat(
-    [ path.join(__dirname, '/../src') ]
+    [path.join(__dirname, '/../src')]
   )
 });
 

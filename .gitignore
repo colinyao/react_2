@@ -1,3 +1,5 @@
+dist
+
 # Logs
 logs
 *.log
@@ -31,3 +33,6 @@ bower_components/
 
 # IDE/Editor data
 .idea
+
+
+

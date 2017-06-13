@@ -1,16 +1,16 @@
 'use strict';
-let postcss=require('postcss')
+let postcss = require('postcss')
 let path = require('path');
 let webpack = require('webpack');
-let merge=require('webpack-merge')
+let merge = require('webpack-merge')
 let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
-let ExtractTextPlugin=require('extract-text-webpack-plugin')
-let HtmlWebpackPlugin=require('html-webpack-plugin')
+let ExtractTextPlugin = require('extract-text-webpack-plugin')
+let HtmlWebpackPlugin = require('html-webpack-plugin')
 let OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-let CopyWebpackPlugin=require('copy-webpack-plugin')
-// Add needed plugins here
-let utils=require('./utils.js')
+let CopyWebpackPlugin = require('copy-webpack-plugin')
+  // Add needed plugins here
+let utils = require('./utils.js')
 
 let config = merge(baseConfig, {
   devtool: defaultSettings.build.productionSourceMap ? '#source-map' : false,
@@ -20,19 +20,19 @@ let config = merge(baseConfig, {
     chunkFilename: utils.assetsPath('js/chunks/[id].[chunkhash].js')
   },
   plugins: [
-     new webpack.LoaderOptionsPlugin({
-     debug: true
-   }),
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true,
-        compress: {
-            warnings: false
-        }
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
     }),
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
@@ -40,7 +40,7 @@ let config = merge(baseConfig, {
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
-       }
+      }
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
@@ -53,8 +53,8 @@ let config = merge(baseConfig, {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
+          // more options:
+          // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
@@ -62,7 +62,7 @@ let config = merge(baseConfig, {
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      minChunks: function (module) {
+      minChunks: function(module) {
         // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
@@ -79,14 +79,12 @@ let config = merge(baseConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
-        // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: defaultSettings.build.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ]),
+    // copy custom static assets
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../static'),
+      to: defaultSettings.build.assetsSubDirectory,
+      ignore: ['.*']
+    }]),
 
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
@@ -122,7 +120,7 @@ config.module.rules.push({
   test: /\.(js|jsx)$/,
   loader: 'babel-loader',
   include: [].concat(
-    [ path.join(__dirname, '/../src') ]
+    [path.join(__dirname, '/../src')]
   )
 });
 
